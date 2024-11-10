@@ -6,7 +6,7 @@ spring:
     config:
       server:
         git:
-          uri: ${GIT_URI:https://github.com/robjo82/froome.git}
+          uri: ${GIT_URI:https://github.com/IzaakAM/AOS.git}
           search-paths: 'config-service'
           default-label: main
 

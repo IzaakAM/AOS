@@ -7,6 +7,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import lombok.NonNull;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
@@ -33,17 +34,19 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain apiFilterChain(HttpSecurity http) throws Exception {
         http
-                .authorizeHttpRequests(authorize -> authorize
-                        .requestMatchers("/swagger-ui/**", "/v3/api-docs/**").permitAll()
-                        .requestMatchers("/api/users/register", "/api/users/login", "/api/users/logout").permitAll()
-                        .anyRequest().authenticated()
-                )
-                .addFilterBefore(new BearerTokenFilter(), UsernamePasswordAuthenticationFilter.class)
-                .csrf(AbstractHttpConfigurer::disable)
-                .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS));
-
+            .authorizeHttpRequests(authorize -> authorize
+                    .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll() // Autorise les requêtes OPTIONS (préflight)
+                    .requestMatchers("/swagger-ui/**", "/v3/api-docs/**").permitAll() // Autorise l'accès à Swagger
+                    .requestMatchers("/api/users/register", "/api/users/login", "/api/users/logout").permitAll() // Autorise l'enregistrement et la connexion sans authentification
+                    .anyRequest().authenticated() // Toutes les autres requêtes nécessitent une authentification
+            )
+            .addFilterBefore(new BearerTokenFilter(), UsernamePasswordAuthenticationFilter.class)
+            .csrf(AbstractHttpConfigurer::disable)
+            .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS)); // Mode session sans état
+    
         return http.build();
     }
+    
 
     public static class BearerTokenFilter extends OncePerRequestFilter {
         @Override

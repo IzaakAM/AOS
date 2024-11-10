@@ -65,7 +65,7 @@ services:
       context: .
       dockerfile: config-service/Dockerfile
     environment:
-      GIT_URI: https://github.com/robjo82/froome.git
+      GIT_URI: https://github.com/IzaakAM/AOS.git
       PORT: 8985
     ports:
       - "8985:8985"

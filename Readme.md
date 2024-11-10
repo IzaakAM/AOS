@@ -30,11 +30,6 @@ Spring Cloud Config est un bon choix pour ce projet car il permet de décentrali
 ## Authentification
 Le projet utilise un système d'authentification basé sur des tokens bearer, où les tokens sont des hachages de l'objet utilisateur. Cela permet de différencier différents types d'utilisateurs, comme les administrateurs.
 
-## Déploiement
-Le projet est accessible à l'adresse https://froome.robin-joseph.fr. Vous pouvez créer un compte ou utiliser les identifiants suivants pour vous connecter en tant qu'administrateur :
-- Email : robin.joseph@gmail.com
-- Mot de passe : string
-
 Pour exécuter le projet localement, vous pouvez cloner la branche master et démarrer le docker-compose. Le projet sera alors accessible sur le port 8984. Les ports 8980, 8981, 8982, et 8983 sont également mappés pour accéder à la documentation Swagger des différentes API via /swagger-ui/index.html. Le port 8986 est également mappé pour la console Eureka. Ces mappages ne sont pas nécessaires si vous n'avez pas besoin d'accéder à la documentation ou aux informations de surveillance, donc n'hésitez pas à les désactiver dans le docker-compose en cas de conflit.
 
 ![Architecture.png](https://github.com/robjo82/froome/blob/main/froome-ui/public/Architecture.png?raw=true)
