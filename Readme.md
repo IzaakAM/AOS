@@ -1,39 +1,51 @@
-# Microservices Demo Project
-This project is a demonstration of the use of 4 Spring Boot APIs with a clean design, a Swagger documentation for each API, detailed and documented error handling, and access management.
+# ATTENTION
+Impossible de régler les erreurs CORS. 
+Pour lancer l'application, il faut désactiver les politiques de gestion des requêtes options du navigeur
+
+Pour contourner temporairement les erreurs CORS lors du développement, vous pouvez lancer votre navigateur sans les politiques de sécurité :
+
+- **Chrome/Edge** : Lancez avec `--disable-web-security --user-data-dir=/tmp/dev` :
+  ```bash
+  google-chrome --disable-web-security --user-data-dir=/tmp/dev
+  ```
+- **Firefox** : Modifiez `about:config` :
+  - Passez `security.fileuri.strict_origin_policy` à `false`.
+  - Utilisez l'extension **CORS Everywhere** pour plus de flexibilité.
+
+⚠️ **Attention** : Cette méthode désactive des mécanismes de sécurité. À utiliser uniquement pour des tests locaux.
+
+# Projet Démo de Microservices
+
+Ce projet est une démonstration de l'utilisation de 4 API Spring Boot avec un design épuré, une documentation Swagger pour chaque API, une gestion des erreurs détaillée et documentée, ainsi qu'une gestion des accès.
 
 ## Technologies
 ### Spring Boot
-Spring Boot is used to develop the 4 APIs that make up the project. It provides a simple and efficient way to create standalone, production-grade Spring-based applications.
+Spring Boot est utilisé pour développer les 4 API qui composent le projet. Il offre un moyen simple et efficace de créer des applications Spring autonomes et prêtes pour la production.
 
 ### Vue.js
-The frontend of the project was developed using Vue.js, a popular JavaScript framework. Vue.js was chosen for its simplicity and flexibility, and its ability to create a complete and exhaustive presentation of the API's features using libraries such as Bootstrap and Bootswatch.
+Le frontend du projet a été développé avec Vue.js, un framework JavaScript populaire. Vue.js a été choisi pour sa simplicité, sa flexibilité, et sa capacité à créer une présentation complète et exhaustive des fonctionnalités de l'API, en utilisant des bibliothèques telles que Bootstrap et Bootswatch.
 
 ### Eureka
-Eureka is used as a naming service in the middle of the project. It allows services to register themselves and discover other services. This allows for dynamic service discovery and load balancing.
+Eureka est utilisé comme service de nommage au cœur du projet. Il permet aux services de s'enregistrer eux-mêmes et de découvrir d'autres services, ce qui rend possible la découverte de services de manière dynamique ainsi que l'équilibrage de charge.
 
-#### Why Eureka?
-Eureka is a good choice for this project because it allows for dynamic service discovery and load balancing. This means that if a service is added or removed, the other services can automatically discover it or stop using it, without having to be manually configured.
+#### Pourquoi Eureka ?
+Eureka est un bon choix pour ce projet car il permet une découverte dynamique des services et un équilibrage de charge. Cela signifie que si un service est ajouté ou retiré, les autres services peuvent automatiquement le découvrir ou cesser de l'utiliser, sans configuration manuelle.
 
 ### Spring Cloud Gateway
-Spring Cloud Gateway is used as an API gateway to route requests between the frontend and the 4 APIs. It was chosen over Zuul because Zuul is no longer maintained, and the project that has officially replaced it is Spring Cloud Gateway.
+Spring Cloud Gateway est utilisé comme passerelle API pour acheminer les requêtes entre le frontend et les 4 API. Il a été préféré à Zuul, car ce dernier n'est plus maintenu, et le projet officiellement destiné à le remplacer est Spring Cloud Gateway.
 
-#### Why Spring Cloud Gateway?
-Spring Cloud Gateway is a good choice for this project because it is a modern and actively maintained API gateway. It provides features such as request routing, filtering, and load balancing, which are necessary for a project with multiple APIs.
+#### Pourquoi Spring Cloud Gateway ?
+Spring Cloud Gateway est un bon choix pour ce projet car il s'agit d'une passerelle API moderne et activement maintenue. Elle fournit des fonctionnalités telles que le routage des requêtes, le filtrage et l'équilibrage de charge, nécessaires pour un projet multi-API.
 
 ### Spring Cloud Config
-Spring Cloud Config is used to decentralize the configuration of the microservices. This allows for easy adjustments to be made to the configuration of the project, even remotely, using a repository.
+Spring Cloud Config est utilisé pour décentraliser la configuration des microservices. Cela permet de faciliter les ajustements de configuration du projet, même à distance, via un dépôt.
 
-#### Why Spring Cloud Config?
-Spring Cloud Config is a good choice for this project because it allows for the configuration of the microservices to be decentralized and managed in a simple and efficient way. This can be particularly useful for a project with multiple microservices, as it allows for easy adjustments to be made to the configuration of the project as a whole, without having to make changes to each individual microservice.
+#### Pourquoi Spring Cloud Config ?
+Spring Cloud Config est un bon choix pour ce projet car il permet de décentraliser et de gérer simplement et efficacement la configuration des microservices. Cela est particulièrement utile pour un projet comportant plusieurs microservices, car cela permet de modifier facilement la configuration du projet dans son ensemble, sans devoir changer chaque microservice individuellement.
 
-## Authentication
-The project uses a bearer token-based authentication system, where the tokens are hashes of the user object. This allows for the differentiation between different types of users, such as administrators.
+## Authentification
+Le projet utilise un système d'authentification basé sur des tokens bearer, où les tokens sont des hachages de l'objet utilisateur. Cela permet de différencier différents types d'utilisateurs, comme les administrateurs.
 
-## Deployment
-The project is accessible at https://froome.robin-joseph.fr. You can create an account or use the following credentials to log in as an administrator:
-- Email: robin.joseph@gmail.com
-- Password: string
+Pour exécuter le projet localement, vous pouvez cloner la branche master et démarrer le docker-compose. Le projet sera alors accessible sur le port 8984. Les ports 8980, 8981, 8982, et 8983 sont également mappés pour accéder à la documentation Swagger des différentes API via /swagger-ui/index.html. Le port 8986 est également mappé pour la console Eureka. Ces mappages ne sont pas nécessaires si vous n'avez pas besoin d'accéder à la documentation ou aux informations de surveillance, donc n'hésitez pas à les désactiver dans le docker-compose en cas de conflit.
 
-To run the project locally, you can clone the master branch and start the docker-compose. The project will then be available on port 8984. Ports 8980, 8981, 8982, and 8983 are also mapped to access the Swagger documentation of the different APIs via /swagger-ui/index.html. Port 8986 is also mapped for the Eureka console. These mappings are not necessary if you do not need to access documentation or monitoring information, so feel free to disable them in the docker-compose if there is a conflict.
-
-![Architecture.png](https://github.com/robjo82/froome/blob/main/froome-ui/public/Architecture.png?raw=true)
+![Architecture.png](https://github.com/IzaakAM/AOS/blob/dev/froome-ui/public/Architecture.png)

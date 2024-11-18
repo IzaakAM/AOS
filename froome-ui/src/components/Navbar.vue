@@ -65,7 +65,7 @@ onMounted(() => {
 
 <style scoped>
 .bg-purple {
-  background-color: #6f42c1;
+  background-color: #2f5fe2;
 }
 
 .badge {
