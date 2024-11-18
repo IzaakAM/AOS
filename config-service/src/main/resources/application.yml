@@ -12,9 +12,11 @@ spring:
 
 logging:
   level:
-    org.springframework.cloud.config.client: INFO
-    org.springframework.cloud.context.scope.GenericScope: INFO
-    org.springframework.boot.context.config: INFO
+    #org.springframework.cloud.config.client: INFO
+    #org.springframework.cloud.context.scope.GenericScope: INFO
+    #org.springframework.boot.context.config: INFO
+    org.springframework.security: DEBUG
+    org.springframework.web: DEBUG
 
 eureka:
   client:
@@ -31,4 +33,5 @@ management:
   endpoint:
     health:
       show-details: always
+
 
